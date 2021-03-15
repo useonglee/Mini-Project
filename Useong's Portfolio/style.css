@@ -126,6 +126,10 @@ ul {
 	border-radius: var(--size-border-radius);
 }
 
+.navbar__menu__item.active { 
+	border: 1px solid white;
+}
+
 .navbar__menu__item.active {
 	border: 1px solid var(--color-white);
 }
