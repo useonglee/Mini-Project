@@ -7,17 +7,17 @@ import 'antd/dist/antd.css'
 
 import wrapper from '../store/configureStore';
 
-// index, profile, signup 파일 의 부모 역할
+// index, profile, signup 파일의 부모 역할
 // index.js 의 return부분이 Component로 들어간다.
 const NodeBird = ({ Component }) => {
     return (
-       <>
+        <>
         <Head>
             <meta charset='utf-8' />
             <title>NodeBird</title>
         </Head>
         <Component />
-       </>
+        </>
     );
 };
 

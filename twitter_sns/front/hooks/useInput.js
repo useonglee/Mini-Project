@@ -1,3 +1,4 @@
+// 커스텀 훅
 import { useState, useCallback } from 'react';
 
 export default (initialValue = null) => {
