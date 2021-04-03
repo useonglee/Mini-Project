@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Card, Popover, Button, Avatar, List, Comment } from 'antd';
 import { RetweetOutlined, HeartOutlined, MessageOutlined, EllipsisOutlined, HeartTwoTone } from '@ant-design/icons';
+
 import PostImages from './PostImages';
 import CommentForm from './CommentForm';
+import PostCardContent from './PostCardContent';
 
 // 컴포넌트를 작성하기 전에는 기획을 먼저 한다.
 // page/index.js 에서 반복문 돌려서 post를 부모로 부터 받아온다.
@@ -55,7 +57,7 @@ function PostCard({ post }) {
                 <Card.Meta
                     avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
                     title={post.User.nickname}
-                    description={post.content}
+                    description={<PostCardContent postData={post.content} />}
                 />
             </Card>
             {commentFormOpened && (

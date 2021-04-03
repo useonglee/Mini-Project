@@ -4,26 +4,26 @@ export const initialState = {
         // 다른 정보들과 합쳐주는 것은 대문자로 시작한다.
         User: {
             id: 1,
-            nickname: '하이우성',
+            nickname: '날아라 우성',
         },
         content: "첫 번째 게시글 #해시태그 #익스프레스",
         Images: [{
-            src: 'https://gimg.gilbut.co.kr/book/BN001958/rn_view_BN001958.jpg',
+            src: 'https://user-images.githubusercontent.com/75570915/106154982-869ec080-61c3-11eb-9a3a-c387778c327f.jpg',
         }, {
-            src: 'https://gimg.gilbut.co.kr/book/BN001998/rn_view_BN001998.jpg',
+            src: 'https://avatars.githubusercontent.com/u/75570915?v=4',
         },{
-            src: 'https://gimg.gilbut.co.kr/book/BN001998/rn_view_BN001998.jpg',
+            src: 'https://www.codestates.com/assets/codestates-ci.png',
         }], 
         Comments: [{
             User: {
                 nickname: 'nero',
             },
-            content: '우와 개정판이 나왔군요~',
+            content: '우성님 프사 잘나왔어요~~!!',
         }, {
             User: {
                 nickname: 'hero',
             },
-            content: '얼른 사고 싶어요!'
+            content: '오오오오~~~'
         }]
     }],
     // 이미지 업로드할 때 여기에 저장

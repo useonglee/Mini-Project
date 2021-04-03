@@ -23,7 +23,7 @@ function PostImages({ images }) {
                     alt={images[0].src} 
                     onClick={onZoom} 
                 />
-                {showImagesZoom && <ImagesZoom image={images} onClose={onClose} />}
+                {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
             </>
         )
     }
@@ -45,7 +45,7 @@ function PostImages({ images }) {
                     alt={images[1].src} 
                     onClick={onZoom} 
                 />
-                {showImagesZoom && <ImagesZoom image={images} onClose={onClose} />}
+                {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
             </>
         )
     }
@@ -70,7 +70,7 @@ function PostImages({ images }) {
                     개의 사진 더보기
                 </div>
             </div>
-            {showImagesZoom && <ImagesZoom image={images} onClose={onClose} />}
+            {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
         </>
     )
 }
