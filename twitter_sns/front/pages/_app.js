@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 // 헤드 태그 추가
 import Head from 'next/head'
 import 'antd/dist/antd.css'
-
+//Redux
+import withReduxSaga from 'next-redux-saga';
 import wrapper from '../store/configureStore';
 
 // index, profile, signup 파일의 부모 역할
@@ -26,4 +27,4 @@ NodeBird.propTypes = {
     Component: PropTypes.elementType.isRequired,
 }
 
-export default wrapper.withRedux(NodeBird);
+export default wrapper.withRedux(withReduxSaga(NodeBird));

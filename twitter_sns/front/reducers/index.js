@@ -22,7 +22,7 @@ const rootReducer = combineReducers ({
 
         // 아래 코드를 쓰지 않으면 user가 정의되지 않았다고 에러가 뜬다.
             default:
-                return state;    
+                return state;  
         }
     },
     user,
