@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+      // import as react => import react
+      "esModuleInterop": true,
+      "sourceMap": true,
+      "lib": ["ES2020", "DOM"],
+      "jsx": "react",
+      // 최신 모듈 사용 여부
+      "module": "esnext",
+      // import export  사용
+      "moduleResolution": "Node",
+      // es5 로 변환
+      "target": "es5",
+      "strict": true,
+      "resolveJsonModule": true,
+      "baseUrl": ".",
+      // import A from ../../../ => import A from @src/hello.js
+      "paths": {
+        "@hooks/*": ["hooks/*"],
+        "@components/*": ["components/*"],
+        "@layouts/*": ["layouts/*"],
+        "@pages/*": ["pages/*"],
+        "@utils/*": ["utils/*"],
+        "@typings/*": ["typings/*"]
+      }
+    }
+  }
