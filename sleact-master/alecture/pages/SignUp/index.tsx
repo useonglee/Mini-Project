@@ -2,14 +2,16 @@ import useInput from '@hooks/useInput';
 import React, { useState, useCallback } from 'react';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header} from './styles';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
     const [email, onChangeEmail] = useInput('');
     const [nickname, onChangeNickname] = useInput('');
     const [password, setPassword] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('');
-    const [mismatchError, setMismatchError] = useState(false)
+    const [mismatchError, setMismatchError] = useState(false);
     const [signUpError, setSignUpError] = useState('');
+    const [signUpSuccess, setSignUpSuccess] = useState(false);
 
     const onChangePassword = useCallback((e) => {
       setPassword(e.target.value);
@@ -27,14 +29,17 @@ const SignUp = () => {
       if (!mismatchError) {
         console.log('서버로 회원가입하기');
         // 비동기 요청은 초기화를 한 번 해주고 진행
+        // 첫번째 요청이 두번째 요청에도 남아있는 경우가 있기 때문
         setSignUpError('');
-        axios.post('http://localhost:3085/api/users', { 
+        setSignUpSuccess(false);
+        axios.post('http://localhost:3095/api/users', { 
           email,
           nickname,
           password,
         })
         .then((response) => {
           console.log(response);
+          setSignUpSuccess(true);
         })
         .catch((error) => {
           console.log(error.response);
@@ -79,14 +84,13 @@ const SignUp = () => {
         {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>}
         {!nickname && <Error>닉네임을 입력해주세요.</Error>}
         {signUpError && <Error>{signUpError}</Error>}
-        
-        {/* {signUpSuccess && <Success>회원가입되었습니다! 로그인해주세요.</Success>}  */}
+        {signUpSuccess && <Success>회원가입되었습니다! 로그인해주세요.</Success>} 
       </Label>
       <Button type="submit">회원가입</Button>
     </Form>
     <LinkContainer>
       이미 회원이신가요?&nbsp;
-      {/* <Link to="/login">로그인 하러가기</Link> */}
+      <Link to="/login">로그인 하러가기</Link>
     </LinkContainer>
   </div>
 };
