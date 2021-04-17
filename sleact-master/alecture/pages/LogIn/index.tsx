@@ -39,12 +39,13 @@ const LogIn = () => {
     [email, password],
   );
 
-//   if (data === undefined) {
-//     return <div>로딩중...</div>;
-//   }
+  if (data === undefined) {
+    return <div>로딩중...</div>;
+  }
 
+    console.log("---------data----------",data)
   if (data) {
-    console.log('두번째')
+    // console.log('두번째', data)
     return <Redirect to="/workspace/channel" />;
   }
 
