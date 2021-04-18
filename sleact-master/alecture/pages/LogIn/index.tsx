@@ -46,7 +46,7 @@ const LogIn = () => {
     console.log("---------data----------",data)
   if (data) {
     // console.log('두번째', data)
-    return <Redirect to="/workspace/channel" />;
+    return <Redirect to="/workspace/sleact/channel/일반" />;
   }
 
   // console.log(error, userData);

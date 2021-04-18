@@ -4,15 +4,15 @@ export interface IUser {
     email: string;
     Workspaces: IWorkspace[];
   }
-  
+
   export interface IUserWithOnline extends IUser {
     online: boolean;
   }
-  
+
   export interface IChannel {
     id: number;
     name: string;
-    private: boolean; // 비공개 채널 여부, 강좌에서는 모두 false(공개)
+    private: boolean; // 비공개 채널 여부, 모두 false(공개)
     WorkspaceId: number;
   }
   

@@ -168,9 +168,6 @@
 // import InviteChannelModal from '@components/InviteChannelModal';
 // import InviteWorkspaceModal from '@components/InviteWorkspaceModal'
 
-
-
-
 import Menu from '@components/Menu';
 import Modal from '@components/Modal';
 import useInput from '@hooks/useInput';
@@ -202,7 +199,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import useSWR from 'swr';
 import gravatar from 'gravatar';
 import { toast } from 'react-toastify';
-// import CreateChannelModal from '@components/CreateChannelModal';
+import CreateChannelModal from '@components/CreateChannelModal';
 
 const Channel = loadable(() => import('@pages/Channel'));
 const DirectMessage = loadable(() => import('@pages/DirectMessage'));
@@ -221,8 +218,15 @@ const Workspace: VFC = () => {
   const { data: userData, error, revalidate, mutate } = useSWR<IUser | false>('http://localhost:3095/api/users', fetcher, {
     dedupingInterval: 2000, // 2초
   });
-  const { data: channelData } = useSWR<IChannel[]>(userData ? `/api/workspaces/${workspace}/channels` : null, fetcher);
-  const { data: memberData } = useSWR<IUser[]>(userData ? `/api/workspaces/${workspace}/members` : null, fetcher);
+
+  // 조건부요청을 지원하는 SWR을 활용하여 로그인 했을 때만 채널 지원
+  const { data: channelData } = useSWR<IChannel[]>(
+    userData ? 
+    `http://localhost:3095/api/workspaces/${workspace}/channels` : null, fetcher);
+    
+  const { data: memberData } = useSWR<IUser[]>(
+    userData ? 
+    `http://localhost:3095/api/workspaces/${workspace}/members` : null, fetcher);
 //   const [socket, disconnect] = useSocket(workspace);
 
 //   useEffect(() => {
@@ -346,7 +350,9 @@ const Workspace: VFC = () => {
           <AddButton onClick={onClickCreateWorkspace}>+</AddButton>
         </Workspaces>
         <Channels>
-          <WorkspaceName onClick={toggleWorkspaceModal}>Sleact</WorkspaceName>
+          <WorkspaceName onClick={toggleWorkspaceModal}>
+            {/* {userData?.Workspaces.find((v) => v.url === workspace)} */}Sleact
+          </WorkspaceName>
           <MenuScroll>
             <Menu show={showWorkspaceModal} onCloseModal={toggleWorkspaceModal} style={{ top: 95, left: 80 }}>
               <WorkspaceModal>
@@ -356,6 +362,9 @@ const Workspace: VFC = () => {
                 <button onClick={onLogout}>로그아웃</button>
               </WorkspaceModal>
             </Menu>
+            {channelData?.map((v) => (
+              <div>{v.name}</div>
+            ))}
             {/* <ChannelList />
             <DMList /> */}
           </MenuScroll>
@@ -380,21 +389,11 @@ const Workspace: VFC = () => {
           <Button type="submit">생성하기</Button>
         </form>
       </Modal>
-      {/* <CreateChannelModal
+      <CreateChannelModal
         show={showCreateChannelModal}
         onCloseModal={onCloseModal}
         setShowCreateChannelModal={setShowCreateChannelModal}
       />
-      <InviteWorkspaceModal
-        show={showInviteWorkspaceModal}
-        onCloseModal={onCloseModal}
-        setShowInviteWorkspaceModal={setShowInviteWorkspaceModal}
-      />
-      <InviteChannelModal
-        show={showInviteChannelModal}
-        onCloseModal={onCloseModal}
-        setShowInviteChannelModal={setShowInviteChannelModal}
-      /> */}
     </div>
   );
 };

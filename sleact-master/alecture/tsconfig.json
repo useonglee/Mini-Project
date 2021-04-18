@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      // import as react => import react
+      // import as react => import react 
       "esModuleInterop": true,
       "sourceMap": true,
       "lib": ["ES2020", "DOM"],
