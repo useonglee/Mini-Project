@@ -40,7 +40,7 @@ export default class HabitPresenter {
 
   add(name, update) {
     if (this.habits.length === this.maxHabits) {
-      throw new Error(`${maxHabits}개 이상의 습관을 추가할 수 없습니다`);
+      throw new Error(`${this.maxHabits}개 이상의 습관을 추가할 수 없습니다`);
     }
     this.habits = [...this.habits, { id: Date.now(), name, count: 0 }];
 
