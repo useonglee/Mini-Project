@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import Habit from './habit';
-import HabitAddForm from './habitAddForm';
+import React, { Component } from "react";
+import Habit from "../habit/habit";
+import HabitAddForm from "../form/habitAddForm";
 
 class Habits extends Component {
   componentDidUpdate() {
     // 컴포넌트가 업데이트 될 때 마다 불 필요한 요소의 리렌더링을 막아준다.
   }
-  handleIncrement = habit => {
+  handleIncrement = (habit) => {
     this.props.onIncrement(habit);
   };
 
-  handleDecrement = habit => {
+  handleDecrement = (habit) => {
     this.props.onDecrement(habit);
   };
 
-  handleDelete = habit => {
+  handleDelete = (habit) => {
     this.props.onDelete(habit);
   };
 
-  handleAdd = name => {
+  handleAdd = (name) => {
     this.props.onAdd(name);
-  }
+  };
 
   render() {
     return (
       <div className="habits">
         <HabitAddForm onAdd={this.handleAdd} />
         <ul>
-          {this.props.habits.map(habit => (
+          {this.props.habits.map((habit) => (
             <Habit
               key={habit.id}
               habit={habit}
