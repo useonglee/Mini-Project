@@ -13,18 +13,12 @@ describe("habit add form", () => {
   });
 
   describe("habit submit", () => {
-    let onAdd;
-    let input;
-    let button;
-
-    beforeAll(() => {
-      onAdd = jest.fn();
-      render(<HabitAddForm onAdd={onAdd} />);
-      input = screen.getByPlaceholderText("Habit");
-      button = screen.getByText("Add");
-    });
-
     it("calls onAdd when button is clicked", () => {
+      const onAdd = jest.fn();
+      render(<HabitAddForm onAdd={onAdd} />);
+      const input = screen.getByPlaceholderText("Habit");
+      const button = screen.getByText("Add");
+
       userEvent.type(input, "New Habit");
       userEvent.click(button);
 
@@ -32,6 +26,11 @@ describe("habit add form", () => {
     });
 
     it("does not call onAdd when the habit is empty", () => {
+      const onAdd = jest.fn();
+      render(<HabitAddForm onAdd={onAdd} />);
+      const input = screen.getByPlaceholderText("Habit");
+      const button = screen.getByText("Add");
+
       userEvent.type(input, "");
       userEvent.click(button);
 
