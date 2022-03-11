@@ -1,10 +1,8 @@
-import reportWebVitals from "./reportWebVitals";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./app";
 import "@fortawesome/fontawesome-free/js/all.js";
-import HabitPresenter from "./habit_presenter";
+import App from "./app/app";
+import HabitPresenter from "./app/habit_presenter";
 
 const habitPresenter = new HabitPresenter(
   [
@@ -21,5 +19,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-reportWebVitals();
