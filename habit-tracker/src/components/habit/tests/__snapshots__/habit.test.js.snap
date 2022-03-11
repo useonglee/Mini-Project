@@ -37,6 +37,7 @@ exports[`habit component render habit component 1`] = `
   <button
     className="habit-button habit-delete"
     onClick={[Function]}
+    title="delete"
   >
     <i
       className="fas fa-trash"

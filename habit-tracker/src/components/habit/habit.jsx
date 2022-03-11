@@ -35,7 +35,11 @@ const Habit = memo(({ habit, onIncrement, onDecrement, onDelete }) => {
       >
         <i className="fas fa-minus-square"></i>
       </button>
-      <button className="habit-button habit-delete" onClick={handleDelete}>
+      <button
+        className="habit-button habit-delete"
+        title="delete"
+        onClick={handleDelete}
+      >
         <i className="fas fa-trash"></i>
       </button>
     </li>

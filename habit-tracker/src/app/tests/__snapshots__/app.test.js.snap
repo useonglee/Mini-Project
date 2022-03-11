@@ -73,6 +73,7 @@ Array [
         <button
           className="habit-button habit-delete"
           onClick={[Function]}
+          title="delete"
         >
           <i
             className="fas fa-trash"
@@ -115,6 +116,7 @@ Array [
         <button
           className="habit-button habit-delete"
           onClick={[Function]}
+          title="delete"
         >
           <i
             className="fas fa-trash"
@@ -157,6 +159,7 @@ Array [
         <button
           className="habit-button habit-delete"
           onClick={[Function]}
+          title="delete"
         >
           <i
             className="fas fa-trash"
