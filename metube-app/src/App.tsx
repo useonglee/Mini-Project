@@ -3,11 +3,9 @@ import { Routes, Route, Link } from "react-router-dom";
 // Auto generates routes from files under ./pages
 // https://vitejs.dev/guide/features.html#glob-import
 const pages = import.meta.globEager("./pages/*.tsx");
-console.log("pages", pages);
 
-const routes = Object.keys(pages).map((path) => {
+const routes = Object.keys(pages).map((path: string) => {
   const name = path.match(/\.\/pages\/(.*)\.tsx$/)[1];
-  console.log("name", name);
 
   return {
     name,
@@ -31,12 +29,8 @@ export default function App() {
         </ul>
       </nav>
       <Routes>
-        {routes.map(({ path, component: RouteComp }) => {
-          return (
-            <Route key={path} path={path}>
-              <RouteComp />
-            </Route>
-          );
+        {routes.map(({ name, path, component: RouteComp }) => {
+          return <Route key={name} path={path} element={<RouteComp />} />;
         })}
       </Routes>
     </>
