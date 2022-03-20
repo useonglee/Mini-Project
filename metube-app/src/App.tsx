@@ -1,38 +1,45 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
 
-// Auto generates routes from files under ./pages
-// https://vitejs.dev/guide/features.html#glob-import
-const pages = import.meta.globEager("./pages/*.tsx");
+function App() {
+  const [count, setCount] = useState(0)
 
-const routes = Object.keys(pages).map((path: string) => {
-  const name = path.match(/\.\/pages\/(.*)\.tsx$/)[1];
-
-  return {
-    name,
-    path: name === "Home" ? "/" : `/${name.toLowerCase()}`,
-    component: pages[path].default,
-  };
-});
-
-export default function App() {
   return (
-    <>
-      <nav>
-        <ul>
-          {routes.map(({ name, path }) => {
-            return (
-              <li key={path}>
-                <Link to={path}>{name}</Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-      <Routes>
-        {routes.map(({ name, path, component: RouteComp }) => {
-          return <Route key={name} path={path} element={<RouteComp />} />;
-        })}
-      </Routes>
-    </>
-  );
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Hello Vite + React!</p>
+        <p>
+          <button type="button" onClick={() => setCount((count) => count + 1)}>
+            count is: {count}
+          </button>
+        </p>
+        <p>
+          Edit <code>App.tsx</code> and save to test HMR updates.
+        </p>
+        <p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+          {' | '}
+          <a
+            className="App-link"
+            href="https://vitejs.dev/guide/features.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Vite Docs
+          </a>
+        </p>
+      </header>
+    </div>
+  )
 }
+
+export default App
