@@ -1,8 +1,19 @@
-import React, { useState } from "react";
-import { useFetchVideos } from "../../hooks/useFetchVideos";
+import VideoCard from "../VideoCard";
+import { videoItemType } from "../../types/videos";
+import * as Styled from "./styled";
 
-function VideoList() {
-  return <div>VideoList</div>;
+interface Props {
+  videos: videoItemType[];
+}
+
+function VideoList({ videos }: Props) {
+  return (
+    <Styled.VideoListContainer>
+      {videos.map((video) => (
+        <VideoCard key={video.id} video={video} />
+      ))}
+    </Styled.VideoListContainer>
+  );
 }
 
 export default VideoList;
