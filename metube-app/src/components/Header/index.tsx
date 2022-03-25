@@ -1,27 +1,22 @@
 import React, { memo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSearchVideos } from "../../hooks/useSearchVideos";
 import * as Styled from "./styled";
 
 interface Props {
-  setVideos: any;
+  onSearch: (query: string) => void;
 }
 
-function Header({ setVideos }: Props) {
-  const [query, setQuery] = useState<string>("");
+function Header({ onSearch }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const { data } = useSearchVideos(query, {
-    onSuccess: () => {
-      query && setVideos(data);
-    },
-    onError: (error: any) => {
-      console.log(error);
-    },
-  });
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const { data } = useSearchVideos(searchQuery);
+  const navigator = useNavigate();
 
   const handleSeachValue = () => {
     const value = inputRef.current!.value;
-    setQuery(value);
+    setSearchQuery(value);
+    onSearch(data);
   };
 
   const handelKeyPress = (event: any) => {
@@ -33,7 +28,11 @@ function Header({ setVideos }: Props) {
   return (
     <Styled.HeaderContainer>
       <Styled.HeaderLogo>
-        <img src="/images/logo.png" alt="logo image" />
+        <img
+          src="/images/logo.png"
+          alt="logo image"
+          onClick={() => navigator("/")}
+        />
         <h1>MeTube</h1>
       </Styled.HeaderLogo>
       <Styled.SearchInput
