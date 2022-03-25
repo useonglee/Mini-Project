@@ -17,6 +17,6 @@ const searchVideos = async (query: string) => {
   }));
 };
 
-export const useSearchVideos = (query: string, options: any) => {
+export const useSearchVideos = (query: string, options?: any) => {
   return useQuery(["search", query], () => searchVideos(query), options);
 };

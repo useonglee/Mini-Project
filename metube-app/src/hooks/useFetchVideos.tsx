@@ -13,6 +13,6 @@ const fetchVideos = async () => {
   return response?.data;
 };
 
-export const useFetchVideos = (options: any) => {
+export const useFetchVideos = (options?: any) => {
   return useQuery("videoList", () => fetchVideos(), options);
 };
