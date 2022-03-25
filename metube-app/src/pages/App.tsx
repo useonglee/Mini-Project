@@ -1,28 +1,13 @@
-import { useState } from "react";
-import Header from "../components/Header";
-import Loading from "../components/Loading";
-import VideoList from "../components/VideoList";
-import { useFetchVideos } from "../hooks/useFetchVideos";
+import { Route, Routes } from "react-router-dom";
+import DetailPage from "./detail";
+import HomePage from "./Home";
 
 function App() {
-  const [videos, setVideos] = useState([]);
-
-  const { data, isLoading } = useFetchVideos({
-    onSuccess: () => {
-      setVideos(data);
-    },
-    onError: (error: any) => {
-      console.log(error);
-    },
-  });
-
-  if (isLoading) return <Loading />;
-
   return (
-    <>
-      <Header setVideos={setVideos} />
-      <VideoList />
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/watch" element={<DetailPage />} />
+    </Routes>
   );
 }
 
