@@ -16,13 +16,10 @@ export const GlobalStyle = createGlobalStyle`
   }
   html {
     width: 100%;
-    background: #f0f2f5;
-
   }
   body {
     min-width: 360px;
     line-height: 1.25;
-    background: #f0f2f5;
   }
 
   html, body, div, span, applet, object, iframe,
