@@ -32,11 +32,7 @@ function Header({ onSearch }: Props) {
   return (
     <Styled.HeaderContainer>
       <Styled.HeaderLogo>
-        <img
-          src="/images/logo.png"
-          alt="logo image"
-          onClick={() => navigator("/")}
-        />
+        <img src="/images/logo.png" alt="logo image" />
         <h1>MeTube</h1>
       </Styled.HeaderLogo>
       <Styled.SearchBox>
@@ -46,12 +42,8 @@ function Header({ onSearch }: Props) {
           placeholder="Search"
           onKeyPress={handleKeyPress}
         />
-        <button>
-          <img
-            src="/images/search.png"
-            alt="search button iamge"
-            onClick={handleClickSearchVideo}
-          />
+        <button type="submit" onClick={handleClickSearchVideo}>
+          <img src="/images/search.png" alt="search button iamge" />
         </button>
       </Styled.SearchBox>
     </Styled.HeaderContainer>
