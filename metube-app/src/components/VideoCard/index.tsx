@@ -1,32 +1,32 @@
-import { createSearchParams, useNavigate } from "react-router-dom";
 import { videoItemType } from "../../types/videos";
+import Loading from "../Loading";
 import * as Styled from "./styled";
 
 interface Props {
   video: videoItemType;
+  onVideoClick: (video: videoItemType) => void;
+  isLoading: boolean;
 }
 
-function VideoCard({ video }: Props) {
+function VideoCard({ video, onVideoClick, isLoading }: Props) {
   const { channelTitle, title, thumbnails } = video.snippet;
-  const navigator = useNavigate();
-
-  const hadleDetailPageInfo = () => {
-    return navigator({
-      pathname: "watch",
-      search: `${createSearchParams({
-        v: `${video.id}`,
-      })}`,
-    });
-  };
 
   return (
-    <Styled.VideoCardContainer onClick={hadleDetailPageInfo}>
-      <img src={thumbnails.medium.url} />
-      <div>
-        <p>{title}</p>
-        <p>{channelTitle}</p>
-      </div>
-    </Styled.VideoCardContainer>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Styled.VideoCardContainer onClick={() => onVideoClick(video)}>
+          <div>
+            <img src={thumbnails.medium.url} />
+            <div>
+              <p>{title}</p>
+              <p>{channelTitle}</p>
+            </div>
+          </div>
+        </Styled.VideoCardContainer>
+      )}
+    </>
   );
 }
 
