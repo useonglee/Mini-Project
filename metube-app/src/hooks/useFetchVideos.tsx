@@ -10,7 +10,7 @@ const fetchVideos = async () => {
     },
   });
 
-  return response?.data;
+  return response?.data.items;
 };
 
 export const useFetchVideos = (options?: any) => {
