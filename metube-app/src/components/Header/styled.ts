@@ -5,7 +5,6 @@ export const HeaderContainer = styled.header`
   top: 0;
   z-index: 10;
   display: flex;
-  justify-content: center;
   width: 100%;
   height: 4rem;
   padding: 0.8rem 2rem;
@@ -29,12 +28,30 @@ export const HeaderLogo = styled.div`
   }
 `;
 
-export const SearchInput = styled.input`
+export const SearchBox = styled.div`
+  display: flex;
   width: 100%;
-  padding: 0.8rem;
-  font-size: 1.2rem;
 
-  &:focus {
-    border-color: #0093e9;
+  input {
+    width: 100%;
+    padding: 0.3em;
+    font-size: 1.2rem;
+    border: 1px solid ${({ theme }) => theme.color.gray400};
+
+    &:focus {
+      border: 1px solid ${({ theme }) => theme.color.blue800};
+    }
+  }
+
+  button {
+    border: 1px solid ${({ theme }) => theme.color.gray400};
+    border-left: none;
+    background-color: ${({ theme }) => theme.color.gray100};
+
+    img {
+      height: 100%;
+      padding: 0.5em;
+      object-fit: contain;
+    }
   }
 `;

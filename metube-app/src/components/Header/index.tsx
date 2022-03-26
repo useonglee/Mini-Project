@@ -19,7 +19,11 @@ function Header({ onSearch }: Props) {
     onSearch(data);
   };
 
-  const handelKeyPress = (event: any) => {
+  const handleClickSearchVideo = () => {
+    handleSeachValue();
+  };
+
+  const handleKeyPress = (event: any) => {
     if (event.key === "Enter") {
       handleSeachValue();
     }
@@ -35,13 +39,21 @@ function Header({ onSearch }: Props) {
         />
         <h1>MeTube</h1>
       </Styled.HeaderLogo>
-      <Styled.SearchInput
-        ref={inputRef}
-        type="search"
-        placeholder="Search"
-        onKeyPress={handelKeyPress}
-      />
-      <button></button>
+      <Styled.SearchBox>
+        <input
+          ref={inputRef}
+          type="search"
+          placeholder="Search"
+          onKeyPress={handleKeyPress}
+        />
+        <button>
+          <img
+            src="/images/search.png"
+            alt="search button iamge"
+            onClick={handleClickSearchVideo}
+          />
+        </button>
+      </Styled.SearchBox>
     </Styled.HeaderContainer>
   );
 }
