@@ -1,7 +1,6 @@
-import React, { Suspense, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Header from "../../components/Header";
-import Loading from "../../components/Loading";
-import DetailPage from "../detail";
+import DetailPage from "../Detail";
 import { useFetchVideos } from "../../hooks/useFetchVideos";
 import { videoItemType } from "../../types/videos";
 import * as Styled from "./styled";
@@ -10,7 +9,12 @@ const VideoList = React.lazy(() => import("../../components/VideoList"));
 
 function HomePage() {
   const [videos, setVideos] = useState<videoItemType[]>([]);
-  const { data, error } = useFetchVideos();
+  const [selectVideo, setSelectVideo] = useState<videoItemType | null>(null);
+  const { data, isLoading, error } = useFetchVideos();
+
+  const handleVideoClick = (video: videoItemType) => {
+    setSelectVideo(video);
+  };
 
   const search = useCallback(
     (data: any) => {
@@ -24,19 +28,27 @@ function HomePage() {
   }
 
   useEffect(() => {
-    const videoItems = data.items;
-    setVideos(videoItems);
-  }, []);
+    setVideos(data);
+  }, [videos]);
 
   return (
-    <Suspense fallback={<Loading />}>
-      <Styled.PageLayout>
-        <Header onSearch={search} />
-        <Styled.ContentContainer>
-          <VideoList videos={videos} />
-        </Styled.ContentContainer>
-      </Styled.PageLayout>
-    </Suspense>
+    <Styled.PageLayout>
+      <Header onSearch={search} />
+      <Styled.ContentContainer>
+        {selectVideo && (
+          <Styled.VideoDetail>
+            <DetailPage video={selectVideo} />
+          </Styled.VideoDetail>
+        )}
+        <Styled.VideoList>
+          <VideoList
+            videos={videos}
+            onVideoClick={handleVideoClick}
+            isLoading={isLoading}
+          />
+        </Styled.VideoList>
+      </Styled.ContentContainer>
+    </Styled.PageLayout>
   );
 }
 

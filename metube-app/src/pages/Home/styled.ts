@@ -10,3 +10,11 @@ export const ContentContainer = styled.section`
   display: flex;
   margin-top: 2rem;
 `;
+
+export const VideoDetail = styled.section`
+  flex: 1 1 70%;
+`;
+
+export const VideoList = styled.section`
+  flex: 1 1 30%;
+`;
